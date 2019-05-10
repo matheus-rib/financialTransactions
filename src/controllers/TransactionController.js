@@ -11,9 +11,9 @@ TransactionController.index = async (req, res) => {
 TransactionController.store = async (req, res) => {
     let transaction = {};
     transaction.value = parseFloat(req.body.valor.replace(',','.'));
-    transaction.occurrence = req.body.tipo;
-    transaction.category = req.body.categoria;
-    transaction.observation = req.body.observacao;
+    transaction.occurrence = req.body.occurrence;
+    transaction.category = req.body.category;
+    transaction.observation = req.body.observation;
 
     await Transactions.create(transaction);
     transactions = await Transactions.find().sort( {inclusion: "desc"} );

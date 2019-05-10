@@ -34,13 +34,14 @@ CSVController.byPeriod= async (req, res) => {
     monthToExport = req.body.month;
     yearToExport = req.body.year;
 
+    
     const fromDate = new Date(yearToExport, monthToExport, 0);
-    const toDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), 0);
+    const toDate = new Date(fromDate.getFullYear(), fromDate.getMonth(), 1);
     
     const condition = {
         inclusion: {
-            $gte: fromDate, 
-            $lt: toDate
+            $gte: toDate, 
+            $lt: fromDate
         }
     };
 
@@ -53,9 +54,6 @@ CSVController.byPeriod= async (req, res) => {
     await createFile('transaction.csv', csv)
     var file = __dirname + '../../../transaction.csv';
     res.download(file);
-    console.log(condition)
-    res.render('pages/csv', { transactionResult });
-
 };
 
 module.exports = CSVController;

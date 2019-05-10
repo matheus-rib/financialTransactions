@@ -14,7 +14,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="inputOccurrenceSelect">Tipo</label>
-                            <select name="tipo" class="form-control" id="inputOccurrenceSelect" required>
+                            <select name="occurrence" class="form-control" id="inputOccurrenceSelect" required>
                                 <option value='Entrada'>Entrada</option>
                                 <option value='Saida'>Saída</option>
                             </select>
@@ -36,7 +36,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="observationsTextArea">Observações</label>
-                            <textarea name="observacao" class="form-control" id="observationsTextArea" rows="3"></textarea>
+                            <textarea name="observation" class="form-control" id="observationsTextArea" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,10 @@
                     <% transactions.forEach((transaction) => { 
                         formatedValue = transaction.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                         dateTime = new Date(transaction.inclusion);
-                        formatedDate = dateTime.toLocaleDateString('en-GB');
+                        day = dateTime.getDate().toString().padStart(2, "0");
+                        month = (dateTime.getMonth() + 1);
+                        formatedMonth = month.toString().padStart(2, "0");
+                        formatedDate = day + "/" + formatedMonth + "/" + dateTime.getFullYear()
                         item = transaction.occurrence + "(" + formatedDate + "): " + formatedValue + " - " + transaction.category;
                         item += (transaction.observation) ? ": " + transaction.observation : "";
                         color = (transaction.occurrence === "Entrada") ? "#228B22" : "#E50000";
