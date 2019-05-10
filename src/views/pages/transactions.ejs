@@ -1,0 +1,68 @@
+<%- contentFor('body') %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1>Movimentação</h1>
+            <form action="/transactions" method="POST">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputValue">Valor</label>
+                            <input name="valor" type="number" class="form-control" id="inputValue" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputOccurrenceSelect">Tipo</label>
+                            <select name="tipo" class="form-control" id="inputOccurrenceSelect" required>
+                                <option value='Entrada'>Entrada</option>
+                                <option value='Saida'>Saída</option>
+                            </select>
+                        </div>  
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="inputCategodySelect">Categoria</label>
+                            <select name="category" class="form-control" id="inputCategodySelect" required>
+                                <option value='Recebimentos'>Recebimentos</option>
+                                <option value='Pagamentos'>Pagamentos</option>
+                                <option value='Contas'>Contas</option>
+                            </select>  
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="observationsTextArea">Observações</label>
+                            <textarea name="observacao" class="form-control" id="observationsTextArea" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>    
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Histórico de Movimentações</h1>
+        <ul class="list-group">
+                <% if(transactions){ %>
+                    <% transactions.forEach((transaction) => { 
+                        formatedValue = transaction.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                        dateTime = new Date(transaction.inclusion);
+                        formatedDate = dateTime.toLocaleDateString('en-GB');
+                        item = transaction.occurrence + "(" + formatedDate + "): " + formatedValue + " - " + transaction.category;
+                        item += (transaction.observation) ? ": " + transaction.observation : "";
+                        color = (transaction.occurrence === "Entrada") ? "#228B22" : "#E50000";
+                        %>
+                        <li class="list-group-item" style="color: <%=color%>"><%=item%></li>
+                    <% }) %>
+                <% } %>
+        </ul>
+    </div>
+</div>
+
+

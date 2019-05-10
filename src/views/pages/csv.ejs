@@ -1,0 +1,45 @@
+<%- contentFor('body') %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1>Exportar CSV (Mês específico)</h1>
+            <form action="/csvForm" method="POST">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="inputDate">Selecione o mês:</label>
+                            <select name="month" class="form-control" id="inputDate" required>
+                                <option value='1'>Janeiro</option>
+                                <option value='2'>Fevereiro</option>
+                                <option value='3'>Março</option>
+                                <option value='4'>Abril</option>
+                                <option value='5'>Maio</option>
+                                <option value='6'>Junho</option>
+                                <option value='7'>Julho</option>
+                                <option value='8'>Agosto</option>
+                                <option value='9'>Setembro</option>
+                                <option value='10'>Outubro</option>
+                                <option value='11'>Novembro</option>
+                                <option value='12'>Dezembro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="inputDate">Selecione o ano:</label>
+                                <select name="year" class="form-control" id="inputDate" required>
+                                    <option value='2018'>2018</option>
+                                    <option value='2019' selected="selected">2019</option>
+                                    <option value='2020'>2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Exportar</button>
+            </form>
+        </div>
+    </div>    
+</div>
+
+

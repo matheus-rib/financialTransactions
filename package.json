@@ -1,0 +1,31 @@
+{
+  "name": "financial-transactions",
+  "version": "1.0.0",
+  "description": "An electronic wallet for financial transaction history",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "nodemon": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheus-rib/financialTransactions.git"
+  },
+  "author": "Matheus Ribeiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheus-rib/financialTransactions/issues"
+  },
+  "homepage": "https://github.com/matheus-rib/financialTransactions#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-ejs-layouts": "^2.5.0",
+    "json2csv": "^4.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.5.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}

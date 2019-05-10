@@ -1,0 +1,149 @@
+<%- contentFor('body') %>
+<div class="jumbotron text-center">
+    <%
+        color = ( balance > 0) ? "#228B22" : "#E50000";
+    %>
+    <p style="color: <%=color%>">Saldo atual: <%=formatedBalance%></p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Entradas</h2>
+            <canvas id="myChartIn" width="400" height="400"></canvas>
+        </div> 
+        <div class="col-md-4">
+            <h2>Saidas</h2>
+            <canvas id="myChartOut" width="400" height="400"></canvas>
+        </div> 
+        <div class="col-md-4">
+            <h3>Últimas movimentações</h3>
+            <canvas id="myChartLastMov" width="400" height="400"></canvas>
+        </div> 
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script>
+
+    let dataInOut = JSON.parse('<%- JSON.stringify(dataChartInOut) %>');
+    let dataLastMov = JSON.parse('<%- JSON.stringify(dataChartLastMovs) %>');
+
+    const labelsChartInOut = dataInOut.map(l => l.name);
+    const dataChartIn = dataInOut.map(l => l.income);
+    const dataChartOut = dataInOut.map(l => l.outcome);
+
+    const labelsChartLasMov = dataLastMov.map(l => l.name);
+    const dataChartLastMovs = dataLastMov.map(l => l.balance);
+    var ctx = document.getElementById('myChartIn').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labelsChartInOut,
+            datasets: [{
+                label: '# Valor',
+                data: dataChartIn,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    
+
+    var ctx = document.getElementById('myChartOut').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labelsChartInOut,
+            datasets: [{
+                label: '# Valor',
+                data: dataChartOut,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctx = document.getElementById('myChartLastMov').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labelsChartLasMov,
+            datasets: [{
+                label: '# Valor',
+                data: dataChartLastMovs,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
