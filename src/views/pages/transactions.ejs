@@ -2,16 +2,16 @@
 <div class="row">
     <div class="col-md-12">
         <div class="jumbotron">
-            <h1>Movimentação</h1>
+            <h1>Lançamento</h1>
             <form action="/transactions" method="POST">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="inputValue">Valor</label>
                             <input name="valor" type="number" class="form-control" id="inputValue" required>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="inputOccurrenceSelect">Tipo</label>
                             <select name="occurrence" class="form-control" id="inputOccurrenceSelect" required>
@@ -20,7 +20,7 @@
                             </select>
                         </div>  
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="inputCategodySelect">Categoria</label>
                             <select name="category" class="form-control" id="inputCategodySelect" required>
@@ -47,7 +47,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <h1>Histórico de Movimentações</h1>
+        <h1>Histórico de Lançamentos</h1>
         <ul class="list-group">
                 <% if(transactions){ %>
                     <% transactions.forEach((transaction) => { 
